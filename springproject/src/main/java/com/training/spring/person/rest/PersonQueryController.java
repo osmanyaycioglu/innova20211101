@@ -2,31 +2,37 @@ package com.training.spring.person.rest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.spring.person.mappers.PersonMapper;
+import com.training.spring.person.services.PersonQueryService;
 import com.training.spring.rest.Person;
 
 @RestController
 @RequestMapping("/api/v1/person/query")
 public class PersonQueryController {
 
+    @Autowired
+    private PersonQueryService pqs;
+
     @GetMapping("/get/single/{username}")
     public Person getSingle(@PathVariable("username") final String username) {
-        return null;
+        return PersonMapper.toExternalPerson(this.pqs.getSinglePerson(username));
     }
 
     @GetMapping("/get/all")
     public List<Person> getAll() {
-        return null;
+        return PersonMapper.toExternalPersons(this.pqs.getAll());
     }
 
     @GetMapping("/get/by/name")
     public List<Person> getByName(@RequestParam("name") final String name) {
-        return null;
+        return PersonMapper.toExternalPersons(this.pqs.getByName(name));
     }
 
 }

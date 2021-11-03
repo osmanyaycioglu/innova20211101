@@ -33,32 +33,36 @@ public class Person {
         return this.name;
     }
 
-    public void setName(final String nameParam) {
+    public Person setName(final String nameParam) {
         this.name = nameParam;
+        return this;
     }
 
     public String getSurname() {
         return this.surname;
     }
 
-    public void setSurname(final String surnameParam) {
+    public Person setSurname(final String surnameParam) {
         this.surname = surnameParam;
+        return this;
     }
 
     public Integer getHeight() {
         return this.height;
     }
 
-    public void setHeight(final Integer heightParam) {
+    public Person setHeight(final Integer heightParam) {
         this.height = heightParam;
+        return this;
     }
 
     public Integer getWeight() {
         return this.weight;
     }
 
-    public void setWeight(final Integer weightParam) {
+    public Person setWeight(final Integer weightParam) {
         this.weight = weightParam;
+        return this;
     }
 
     @Override
@@ -78,8 +82,9 @@ public class Person {
         return this.username;
     }
 
-    public void setUsername(final String usernameParam) {
+    public Person setUsername(final String usernameParam) {
         this.username = usernameParam;
+        return this;
     }
 
 
