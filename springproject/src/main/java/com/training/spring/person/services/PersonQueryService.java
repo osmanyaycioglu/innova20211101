@@ -14,8 +14,8 @@ public class PersonQueryService {
     @Autowired
     private PersonDataStorage pds;
 
-    public PersonDto getSinglePerson(final String usernameParam) {
-        return this.pds.getSinglePerson(usernameParam);
+    public PersonDto getSinglePerson(final String phone) {
+        return this.pds.getSinglePerson(phone);
     }
 
     public List<PersonDto> getAll() {

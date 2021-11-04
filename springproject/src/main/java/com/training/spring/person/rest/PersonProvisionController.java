@@ -2,7 +2,10 @@ package com.training.spring.person.rest;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 @Validated
 public class PersonProvisionController {
 
+    private static final Logger     logger = LoggerFactory.getLogger(PersonProvisionController.class);
+
+    @Value("${server.port}")
+    private int                     port;
+
     @Autowired
     private PersonManagementService pms;
 
@@ -33,6 +41,12 @@ public class PersonProvisionController {
                         "activate"
     }, description = "activate given Person")
     public String activate(@Validated @RequestBody final Person person) {
+        if (PersonProvisionController.logger.isInfoEnabled()) {
+            PersonProvisionController.logger.info("[PersonProvisionController][activate]-> Port : "
+                                                  + this.port
+                                                  + " activate request : "
+                                                  + person);
+        }
         this.pms.activate(PersonMapper.toInternalPerson(person));
         return "OK";
     }

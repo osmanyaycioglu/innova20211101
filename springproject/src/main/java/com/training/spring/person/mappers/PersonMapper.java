@@ -10,7 +10,7 @@ import com.training.spring.rest.Person;
 public class PersonMapper {
 
     public static PersonDto toInternalPerson(final Person person) {
-        return new PersonDto().setUsername(person.getUsername())
+        return new PersonDto().setPhone(person.getPhone())
                               .setName(person.getName())
                               .setSurname(person.getSurname())
                               .setHeight(person.getHeight())
@@ -19,7 +19,10 @@ public class PersonMapper {
     }
 
     public static Person toExternalPerson(final PersonDto person) {
-        return new Person().setUsername(person.getUsername())
+        if (person == null) {
+            return null;
+        }
+        return new Person().setPhone(person.getPhone())
                            .setName(person.getName())
                            .setSurname(person.getSurname())
                            .setHeight(person.getHeight())

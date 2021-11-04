@@ -1,32 +1,27 @@
 package com.training.spring.rest;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.training.spring.validation.StartWith;
 
 public class Person {
 
     @NotEmpty
-    @Size(min = 4, max = 12, message = "username {min} ile {max} arasında olmalı.")
-    private String  username;
+    @Size(min = 10, max = 11, message = "phone {min} ile {max} arasında olmalı.")
+    private String phone;
     @NotEmpty
     @Size(min = 2, max = 20, message = "name {min} ile {max} arasında olmalı.")
-    private String  name;
+    private String name;
     @NotEmpty
     @Size(min = 2, max = 30, message = "surname {min} ile {max} arasında olmalı.")
-    @StartWith("s:")
-    private String  surname;
-    @NotNull
-    @Max(300)
-    @Min(90)
+    //    @StartWith("s:")
+    private String surname;
+    //    @NotNull
+    //    @Max(300)
+    //    @Min(90)
     private Integer height;
-    @NotNull
-    @Max(250)
-    @Min(10)
+    //    @NotNull
+    //    @Max(250)
+    //    @Min(10)
     private Integer weight;
 
     public String getName() {
@@ -78,12 +73,14 @@ public class Person {
                + "]";
     }
 
-    public String getUsername() {
-        return this.username;
+
+    public String getPhone() {
+        return this.phone;
     }
 
-    public Person setUsername(final String usernameParam) {
-        this.username = usernameParam;
+
+    public Person setPhone(final String phoneParam) {
+        this.phone = phoneParam;
         return this;
     }
 

@@ -1,19 +1,18 @@
-package com.training.spring.person.models;
+package com.training.spring.order.integrations;
 
-public class PersonDto {
+public class Person {
 
+    private String  phone;
     private String  name;
     private String  surname;
-    private String  phone;
     private Integer height;
     private Integer weight;
-    private EStatus status;
 
     public String getName() {
         return this.name;
     }
 
-    public PersonDto setName(final String nameParam) {
+    public Person setName(final String nameParam) {
         this.name = nameParam;
         return this;
     }
@@ -22,7 +21,7 @@ public class PersonDto {
         return this.surname;
     }
 
-    public PersonDto setSurname(final String surnameParam) {
+    public Person setSurname(final String surnameParam) {
         this.surname = surnameParam;
         return this;
     }
@@ -31,7 +30,7 @@ public class PersonDto {
         return this.height;
     }
 
-    public PersonDto setHeight(final Integer heightParam) {
+    public Person setHeight(final Integer heightParam) {
         this.height = heightParam;
         return this;
     }
@@ -40,25 +39,31 @@ public class PersonDto {
         return this.weight;
     }
 
-    public PersonDto setWeight(final Integer weightParam) {
+    public Person setWeight(final Integer weightParam) {
         this.weight = weightParam;
         return this;
     }
 
-    public EStatus getStatus() {
-        return this.status;
+    @Override
+    public String toString() {
+        return "Person [name="
+               + this.name
+               + ", surname="
+               + this.surname
+               + ", height="
+               + this.height
+               + ", weight="
+               + this.weight
+               + "]";
     }
 
-    public PersonDto setStatus(final EStatus statusParam) {
-        this.status = statusParam;
-        return this;
-    }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public PersonDto setPhone(final String phoneParam) {
+
+    public Person setPhone(final String phoneParam) {
         this.phone = phoneParam;
         return this;
     }

@@ -19,7 +19,7 @@ public class PersonDataStorage {
     private final AtomicLong             counter     = new AtomicLong();
 
     public void addOrUpdate(final PersonDto dtoParam) {
-        this.personStore.put(dtoParam.getUsername(),
+        this.personStore.put(dtoParam.getPhone(),
                              dtoParam);
         this.counter.incrementAndGet();
     }
@@ -35,8 +35,8 @@ public class PersonDataStorage {
         this.personStore.remove(username);
     }
 
-    public PersonDto getSinglePerson(final String usernameParam) {
-        return this.personStore.get(usernameParam);
+    public PersonDto getSinglePerson(final String phone) {
+        return this.personStore.get(phone);
     }
 
     public List<PersonDto> getAll() {
