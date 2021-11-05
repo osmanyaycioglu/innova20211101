@@ -1,4 +1,4 @@
-package com.training.spring.error;
+package com.error.micro;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +15,13 @@ public class RestErrorAdvice {
 
     private static final Logger logger = LoggerFactory.getLogger(RestErrorAdvice.class);
 
-    @Value("micro.domain")
+    @Value("${micro.domain}")
     private String              domain;
-    @Value("micro.subdomain")
+    @Value("${micro.subdomain}")
     private String              subdomain;
-    @Value("micro.context")
+    @Value("${micro.context}")
     private String              context;
-    @Value("micro.name")
+    @Value("${micro.name}")
     private String              microservice;
 
 
@@ -34,11 +34,20 @@ public class RestErrorAdvice {
 
     }
 
+    @ExceptionHandler(MSRestClientException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorObj handleIllegalArgumentException(final MSRestClientException exp) {
+        return this.getErrorPref()
+                   .setDesc("Error while calling another MS.")
+                   .setErrorCause(7000)
+                   .addSubError(exp.getErrorObj());
+    }
+
     private ErrorObj getErrorPref() {
-        return new ErrorObj().setDomain("crm")
-                             .setSubdomain("management")
-                             .setContext("provision")
-                             .setMicroservice("person");
+        return new ErrorObj().setDomain(this.domain)
+                             .setSubdomain(this.subdomain)
+                             .setContext(this.context)
+                             .setMicroservice(this.microservice);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.error.micro.MSRestClientException;
 import com.training.spring.order.services.OrderManagement;
 
 @RestController
@@ -16,7 +17,7 @@ public class OrderController {
     private OrderManagement om;
 
     @PostMapping("/place")
-    public String place(@RequestBody final Order order) {
+    public String place(@RequestBody final Order order) throws MSRestClientException {
         return this.om.placeOrder(order);
     }
 

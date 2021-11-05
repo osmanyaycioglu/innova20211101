@@ -1,4 +1,4 @@
-package com.training.spring.order.rest;
+package com.training.spring.restaurant.models;
 
 import java.math.BigDecimal;
 

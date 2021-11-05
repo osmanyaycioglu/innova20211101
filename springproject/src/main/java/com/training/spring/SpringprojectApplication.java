@@ -5,12 +5,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
+
+import com.error.micro.MsErrorHandling;
 
 @SpringBootApplication
 //@Controller
 //@Repository
 //@Service
 //@Configuration
+@Import(MsErrorHandling.class)
 public class SpringprojectApplication {
 
     @Autowired

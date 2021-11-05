@@ -1,4 +1,4 @@
-package com.training.spring.error;
+package com.error.micro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,12 @@ public class ErrorObj {
     private String         desc;
     private Integer        errorCause;
 
-    public void addSubError(final ErrorObj errorObjParam) {
+    public ErrorObj addSubError(final ErrorObj errorObjParam) {
         if (this.subErrors == null) {
             this.subErrors = new ArrayList<>();
         }
         this.subErrors.add(errorObjParam);
+        return this;
     }
 
     public List<ErrorObj> getSubErrors() {

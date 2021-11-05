@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.error.micro.MSRestClientException;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
@@ -15,10 +16,10 @@ import com.training.spring.order.integrations.clients.IPersonProvisionClient;
 public class PersonClient {
 
     @Autowired
-    private RestTemplate  rt;
+    private RestTemplate           rt;
 
     @Autowired
-    private EurekaClient  eurekaClient;
+    private EurekaClient           eurekaClient;
 
     @Autowired
     private IPersonProvisionClient personProvisionClient;
@@ -29,7 +30,7 @@ public class PersonClient {
         return personLoc;
     }
 
-    public String activatePerson(final Person person) {
+    public String activatePerson(final Person person) throws MSRestClientException {
         return this.personProvisionClient.activate(person);
     }
 

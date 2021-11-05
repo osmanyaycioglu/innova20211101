@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.error.micro.MSRestClientException;
 import com.training.spring.order.integrations.Person;
 
 
@@ -13,6 +14,6 @@ import com.training.spring.order.integrations.Person;
 public interface IPersonProvisionClient {
 
     @PostMapping("/activate")
-    public String activate(@RequestBody final Person person);
+    public String activate(@RequestBody final Person person) throws MSRestClientException;
 
 }
