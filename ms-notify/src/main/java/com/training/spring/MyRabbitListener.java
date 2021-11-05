@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -40,8 +41,10 @@ public class MyRabbitListener {
                                                                   durable = "true",
                                                                   type = ExchangeTypes.TOPIC),
                                              key = "message.mail.#"))
-    public void handleMAILExMessage(final NotifyObj str) {
+    @SendTo("send-response-exchange/send-response")
+    public String handleMAILExMessage(final NotifyObj str) {
         System.out.println("Recieved MAIL : " + str);
+        return "Sent MAIL to : " + str;
     }
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(name = "all-ex-queue",
@@ -64,8 +67,10 @@ public class MyRabbitListener {
                                                                   durable = "true",
                                                                   type = ExchangeTypes.TOPIC),
                                              key = "message.sms.#"))
-    public void handleSMSExMessage(final NotifyObj str) {
+    @SendTo("send-response-exchange/send-response")
+    public String handleSMSExMessage(final NotifyObj str) {
         System.out.println("Recieved SMS : " + str);
+        return "Sent SMS to : " + str;
     }
 
 

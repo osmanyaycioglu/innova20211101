@@ -1,0 +1,29 @@
+micro:
+  context: order
+  domain: order
+  name: order
+  subdomain: management
+resilience4j:
+  retry:
+    instances:
+      myretry:
+        max-attempts: 3
+        retry-exceptions:
+        - com.error.micro.MSRestClientException
+        wait-duration: 2s
+  circuitbreaker:
+    instances:
+      mycircuitbr:
+        sliding-window-type: count-based
+        sliding-window-size: 5
+        failure-rate-threshold: 40
+        slow-call-rate-threshold: 40
+        wait-duration-in-open-state: 10s
+        max-wait-duration-in-half-open-state: 5s
+server:
+  port: ${app.port:10000}
+spring:
+  application:
+    name: order
+  config:
+    import: configserver:http://127.0.0.1:8888

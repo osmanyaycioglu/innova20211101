@@ -12,6 +12,8 @@ import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.training.spring.order.integrations.clients.IPersonProvisionClient;
 
+import io.github.resilience4j.retry.annotation.Retry;
+
 @Service
 public class PersonClient {
 
@@ -30,8 +32,15 @@ public class PersonClient {
         return personLoc;
     }
 
+    @Retry(name = "myretry", fallbackMethod = "activatePersonFallback")
     public String activatePerson(final Person person) throws MSRestClientException {
         return this.personProvisionClient.activate(person);
+    }
+
+    public String activatePersonFallback(final Person person,
+                                         final Throwable thr) {
+        System.out.println("Fallback for : " + thr);
+        return "OK but Not OK";
     }
 
     public String activatePerson3(final Person person) {

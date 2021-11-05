@@ -9,7 +9,7 @@ import com.error.micro.MSRestClientException;
 import com.training.spring.order.integrations.Person;
 
 
-@FeignClient("PERSON")
+@FeignClient(name = "RESTAURANT-CONTEXT", contextId = "restaurant2")
 @RequestMapping("/api/v1/person/provision")
 public interface IPersonProvisionClient {
 

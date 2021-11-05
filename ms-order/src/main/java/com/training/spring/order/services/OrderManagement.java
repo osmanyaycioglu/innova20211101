@@ -38,12 +38,12 @@ public class OrderManagement {
         notifyObjLoc.setDest("23784682374");
         notifyObjLoc.setMessage(stringLoc);
         this.messageQueueClient.sendSMS(notifyObjLoc,
-                                        stringLoc);
+                                        "test.queue");
         NotifyObj notifyObjLoc2 = new NotifyObj();
-        notifyObjLoc.setDest("os@os.com");
-        notifyObjLoc.setMessage(stringLoc);
+        notifyObjLoc2.setDest("os@os.com");
+        notifyObjLoc2.setMessage(stringLoc);
         this.messageQueueClient.sendMAIL(notifyObjLoc2,
-                                         stringLoc);
+                                         "test.topic");
         return stringLoc;
     }
 
